@@ -1,0 +1,10 @@
+.appLayoutStyle {
+  height: 100vh;
+}
+
+.mainStyle {
+  background-color: rgba(var(--color-black-rgba), 0.04);
+  display: flex;
+  height: 100%;
+  overflow-y: auto;
+}
