@@ -1,0 +1,100 @@
+.item {
+  background-color: var(--color-white);
+  border-radius: 20px;
+  border: 1px solid rgba(var(--color-black-1-rgba), 0.12);
+  padding: 24px;
+
+  &_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  &_image {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+
+    &_container {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &_stats {
+    display: flex;
+    gap: 12px;
+  }
+
+  &_stars,
+  &_forks {
+    background-color: var(--color-light-gray);
+    border-radius: 12px;
+    padding: 4px 8px;
+    font-size: 10px;
+    line-height: 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &_center {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 16px;
+    gap: 8px;
+  }
+
+  &_username {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+    color: var(--color-black-1);
+  }
+
+  &_link {
+    font-size: 14px;
+    line-height: 14px;
+    color: var(--color-blue-link);
+  }
+
+  &_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &_utils {
+    display: flex;
+    gap: 16px;
+  }
+
+  &_favourite,
+  &_copy {
+    border: 1px solid rgba(var(--color-black-1-rgba), 0.12);
+    background-color: var(--color-white);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+  }
+
+  &_detailed {
+    background-color: var(--color-orangered);
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    width: 118px;
+    height: 32px;
+    border-radius: 8px;
+  }
+}

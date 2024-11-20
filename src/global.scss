@@ -3,12 +3,31 @@
   --color-white-rgb: 255, 255, 255;
   --color-black-1: #3a3a3a;
   --color-black-text-1: #101828;
-  --color-black-rgba: 58, 58, 58;
+  --color-black-1-rgba: 58, 58, 58;
   --color-black-rgb: 0, 0, 0;
+  --color-light-gray: #f1f5f9;
+  --color-blue-link: #1e89f0;
+  --color-orangered: #d44333;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif, serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
 }

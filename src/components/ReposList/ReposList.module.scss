@@ -1,0 +1,12 @@
+.repos {
+  &_container {
+    width: 100%;
+  }
+
+  &_list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding-bottom: 26px;
+  }
+}
