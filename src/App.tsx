@@ -3,6 +3,8 @@ import './global.scss';
 import { FC } from 'react';
 import { AppLayout } from './ui/AppLayout';
 import { Repositories } from './pages/Repositories/Repositories';
+import { Favourites } from './pages/Favourites/Favourites';
+import { Profile } from './pages/Profile/Profile';
 
 const App: FC = () => {
   return (
@@ -10,7 +12,8 @@ const App: FC = () => {
       <Routes>
         <Route element={<AppLayout />}>
           <Route index element={<Repositories />} />
-          {/* <Route /> */}
+          <Route path="/favourites" element={<Favourites />} />
+          <Route path="/repository/:id" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>

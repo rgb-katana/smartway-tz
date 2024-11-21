@@ -1,21 +1,17 @@
 import { useState, type FC } from 'react';
 import styles from './DropdownList.module.scss';
+import ChevronIcon from 'assets/icons/right.svg?react';
 
 const DropdownListComponent: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const [selectedOption, setSelectedOption] = useState(null);
 
   const toggleList = () => setIsOpen(!isOpen);
-  // const onOptionClicked = value => () => {
-  //   setSelectedOption(value);
-  //   setIsOpen(false);
-  //   console.log(selectedOption);
-  // };
 
   return (
     <div className={styles.dropdown_container}>
       <div className={styles.dropdown_header} onClick={toggleList}>
-        <span className={styles.dropdown_selected}>DropdownList</span>
+        <span className={styles.dropdown_selected}>New list</span>
+        <ChevronIcon />
       </div>
       {isOpen && (
         <div className={styles.dropdown_list_container}>

@@ -1,0 +1,25 @@
+.button {
+  background-color: var(--color-orangered);
+  color: var(--color-white);
+  font-weight: 600;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_big {
+    width: 216px;
+    height: 40px;
+  }
+
+  &_small {
+    width: 118px;
+    height: 32px;
+  }
+
+  :hover {
+    cursor: pointer;
+  }
+}

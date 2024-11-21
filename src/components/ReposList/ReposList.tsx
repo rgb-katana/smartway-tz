@@ -5,11 +5,17 @@ import storeRepos from '../../stores/StoreRepos/StoreRepos';
 import { RepoItem } from './RepoItem/RepoItem';
 
 const ReposListComponent: FC = observer(() => {
-  const { repos, isLoading } = storeRepos;
+  const { repos, isLoading, isError } = storeRepos;
 
   return (
     <div className={styles.repos_container}>
       {isLoading && <p>loading...</p>}
+      {isError && (
+        <p>
+          Can&apos;t find anything. Either github api is down or nothing is
+          found with your search query. Try another one or wait a little.
+        </p>
+      )}
       {!isLoading && (
         <ul className={styles.repos_list}>
           {repos.map((repo, i) => {

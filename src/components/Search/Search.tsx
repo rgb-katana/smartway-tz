@@ -3,7 +3,7 @@ import styles from '../Search/Search.module.scss';
 import storeRepos from '../../stores/StoreRepos/StoreRepos';
 
 const SearchComponent: FC = () => {
-  const { getReposAction } = storeRepos;
+  const { getReposAction, resetRepos } = storeRepos;
   const [searchValue, setSearchValue] = useState('');
   const [debouncedValue, setDebouncedValue] = useState('');
 
@@ -22,10 +22,12 @@ const SearchComponent: FC = () => {
   }, [searchValue]);
 
   useEffect(() => {
-    if (debouncedValue) {
+    if (debouncedValue !== '') {
       void getReposAction(debouncedValue);
     }
-  }, [debouncedValue, getReposAction]);
+
+    resetRepos();
+  }, [debouncedValue, getReposAction, resetRepos]);
 
   return (
     <input
