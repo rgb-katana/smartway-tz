@@ -47,6 +47,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   :hover {
     cursor: pointer;
@@ -75,4 +76,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.favouritesCounter {
+  position: absolute;
+  top: -2px;
+  right: -3px;
+  background-color: var(--color-orangered);
+  min-width: 15px;
+  min-height: 15px;
+  padding: 2px 4px;
+  font-size: 12px;
+  line-height: 10px;
+  color: var(--color-white);
+  border-radius: 4px;
 }

@@ -5,17 +5,19 @@ import TerminalIcon from 'assets/icons/terminal.svg?react';
 import FolderIcon from 'assets/icons/folder.svg?react';
 import CreateIcon from 'assets/icons/create.svg?react';
 import { IRepoPoints } from 'src/pages/Repositories/Repositories.types';
+import { formatNumberWithSpaces } from 'src/utils/formatNumberWithSpaces';
+import { formatDate } from 'src/utils/formatDate';
 
 export const getPointsConfig = (points: IRepoPoints) => {
   return [
     {
       icon: <StarIcon />,
-      upperText: points.stargazers_count.toLocaleString(),
+      upperText: formatNumberWithSpaces(points.stargazers_count),
       bottomText: 'Количество звезд',
     },
     {
       icon: <BranchIcon />,
-      upperText: points.forks_count.toLocaleString(),
+      upperText: formatNumberWithSpaces(points.forks_count),
       bottomText: 'Количество форков',
     },
     {
@@ -30,12 +32,12 @@ export const getPointsConfig = (points: IRepoPoints) => {
     },
     {
       icon: <FolderIcon />,
-      upperText: new Date(points.created_at).toLocaleDateString(),
+      upperText: formatDate(new Date(points.created_at)),
       bottomText: 'Создано',
     },
     {
       icon: <CreateIcon />,
-      upperText: new Date(points.updated_at).toLocaleDateString(),
+      upperText: formatDate(new Date(points.updated_at)),
       bottomText: 'Изменено',
     },
   ];

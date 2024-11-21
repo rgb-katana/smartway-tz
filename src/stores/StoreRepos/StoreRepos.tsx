@@ -4,7 +4,6 @@ import { IRepository } from '../../pages/Repositories/Repositories.types';
 
 class StoreRepos {
   repos: IRepository[] = [];
-  favourites: number[] = [];
   isError = false;
   isLoading = false;
 
@@ -25,8 +24,7 @@ class StoreRepos {
         }
         this.isLoading = false;
       });
-    } catch (e) {
-      console.log('e', e);
+    } catch {
       this.isError = true;
       this.isLoading = false;
     }

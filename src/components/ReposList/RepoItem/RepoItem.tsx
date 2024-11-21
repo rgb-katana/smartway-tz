@@ -5,21 +5,35 @@ import StarIcon from 'assets/icons/star.svg?react';
 import BranchIcon from 'assets/icons/branch.svg?react';
 import CopyIcon from 'assets/icons/copy.svg?react';
 import OutlinedHeart from 'assets/icons/outlined_heart.svg?react';
+import FilledHeart from 'assets/icons/filled_heart.svg?react';
 import { formatNumberWithSpaces } from 'src/utils/formatNumberWithSpaces';
 import { AvatarImage } from 'components/AvatarImage/AvatarImage';
 import { Button } from 'components/Button/Button';
 import { ButtonWithIcon } from 'components/ButtonWithIcon/ButtonWithIcon';
 import { useNavigate } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import storeFavourites from 'src/stores/StoreFavourites/StoreFavourites';
+import { copyToClipboard } from 'src/utils/copy';
 
-const RepoItemComponent: FC<IRepoItemProps> = props => {
+const RepoItemComponent: FC<IRepoItemProps> = observer(props => {
   const { repo } = props;
+  const { isFavourite, toggleFavourite } = storeFavourites;
 
   const navigate = useNavigate();
 
   const handleRedirect = () => {
-    console.log('handle');
     navigate(`/repository/${repo.id}`);
   };
+
+  const handleToggleFavourite = () => {
+    toggleFavourite(repo);
+  };
+
+  const handleCopy = (url: string) => {
+    void copyToClipboard(url);
+  };
+
+  const isFav = isFavourite(repo.id);
 
   return (
     <li className={styles.item}>
@@ -46,10 +60,13 @@ const RepoItemComponent: FC<IRepoItemProps> = props => {
       </div>
       <div className={styles.item_bottom}>
         <div className={styles.item_utils}>
-          <ButtonWithIcon>
-            <OutlinedHeart type="small" />
+          <ButtonWithIcon type="small" onClick={handleToggleFavourite}>
+            {isFav ? <FilledHeart /> : <OutlinedHeart />}
           </ButtonWithIcon>
-          <ButtonWithIcon type="small">
+          <ButtonWithIcon
+            type="small"
+            onClick={() => handleCopy(repo.html_url)}
+          >
             <CopyIcon />
           </ButtonWithIcon>
         </div>
@@ -59,6 +76,6 @@ const RepoItemComponent: FC<IRepoItemProps> = props => {
       </div>
     </li>
   );
-};
+});
 
 export const RepoItem = RepoItemComponent;

@@ -1,21 +1,20 @@
 import { type FC } from 'react';
 import styles from './Result.module.scss';
 import plural from '../../utils/plural';
-import { observer } from 'mobx-react-lite';
-import storeRepos from '../../stores/StoreRepos/StoreRepos';
+import { IResultProps } from './Result.types';
 
-const ResultComponent: FC = observer(() => {
-  const { totalRepos } = storeRepos;
+const ResultComponent: FC<IResultProps> = props => {
+  const { title, totalRepos } = props;
 
   return (
     <p className={styles.resultParagraphStyle}>
-      Result: {`${totalRepos} `}
+      {title}: {`${totalRepos} `}
       {plural(totalRepos, {
         one: 'repository',
         other: 'repositories',
       })}
     </p>
   );
-});
+};
 
 export const Result = ResultComponent;

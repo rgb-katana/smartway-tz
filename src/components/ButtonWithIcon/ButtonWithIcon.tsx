@@ -6,7 +6,7 @@ import clsx from 'clsx';
 const ButtonWithIconComponent: FC<
   PropsWithChildren<IButtonWithIconProps>
 > = props => {
-  const { type = 'big' } = props;
+  const { type = 'big', onClick } = props;
 
   const isBig = type === 'big';
 
@@ -16,6 +16,7 @@ const ButtonWithIconComponent: FC<
         styles.button,
         isBig ? styles.button_big : styles.button_small,
       ])}
+      onClick={onClick}
     >
       {props.children}
     </button>

@@ -4,8 +4,12 @@ import SearchGlassIcon from 'assets/icons/search_glass.svg?react';
 import HeartSimpleIcon from 'assets/icons/heart_simple.svg?react';
 import AccountIcon from 'assets/icons/account.svg?react';
 import { NavLink } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import storeFavourites from 'src/stores/StoreFavourites/StoreFavourites';
 
-const HeaderComponent: FC = () => {
+const HeaderComponent: FC = observer(() => {
+  const { totalFavourites } = storeFavourites;
+
   return (
     <header className={styles.header}>
       <div className={styles.headerContainer}>
@@ -18,6 +22,11 @@ const HeaderComponent: FC = () => {
         <div className={styles.rightHeader}>
           <NavLink to="/favourites">
             <div className={styles.favouritesContainer}>
+              {totalFavourites > 0 && (
+                <div className={styles.favouritesCounter}>
+                  {totalFavourites}
+                </div>
+              )}
               <HeartSimpleIcon />
             </div>
           </NavLink>
@@ -30,6 +39,6 @@ const HeaderComponent: FC = () => {
       </div>
     </header>
   );
-};
+});
 
 export const Header = HeaderComponent;

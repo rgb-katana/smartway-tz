@@ -1,11 +1,10 @@
 import { type FC } from 'react';
 import styles from './ReposList.module.scss';
-import { observer } from 'mobx-react-lite';
-import storeRepos from '../../stores/StoreRepos/StoreRepos';
 import { RepoItem } from './RepoItem/RepoItem';
+import { IReposListProps } from './ReposList.types';
 
-const ReposListComponent: FC = observer(() => {
-  const { repos, isLoading, isError } = storeRepos;
+const ReposListComponent: FC<IReposListProps> = props => {
+  const { isLoading, isError, repos } = props;
 
   return (
     <div className={styles.repos_container}>
@@ -25,6 +24,6 @@ const ReposListComponent: FC = observer(() => {
       )}
     </div>
   );
-});
+};
 
 export const ReposList = ReposListComponent;

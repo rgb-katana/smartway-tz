@@ -9,23 +9,26 @@ import {
 import { getPointsConfig } from './ProfileCard.utils';
 import CopyIcon from 'assets/icons/copy.svg?react';
 import OutlinedHeart from 'assets/icons/outlined_heart.svg?react';
+import FilledHeart from 'assets/icons/filled_heart.svg?react';
 import { AvatarImage } from 'components/AvatarImage/AvatarImage';
 import { Button } from 'components/Button/Button';
 import { ButtonWithIcon } from 'components/ButtonWithIcon/ButtonWithIcon';
+import { observer } from 'mobx-react-lite';
+import storeFavourites from 'src/stores/StoreFavourites/StoreFavourites';
+import { copyToClipboard } from 'src/utils/copy';
 
-const ProfileCardComponent: FC = () => {
+const ProfileCardComponent: FC = observer(() => {
   const { id } = useParams();
   const [repoData, setRepoData] = useState<IRepository>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  const { isFavourite, toggleFavourite } = storeFavourites;
+
   useEffect(() => {
     const fetchRepository = async () => {
       try {
         const repo = await getRepo(String(id));
-
-        console.log('repo', repo);
-
         setRepoData(repo);
       } catch {
         setError('Error getting a repo');
@@ -61,6 +64,11 @@ const ProfileCardComponent: FC = () => {
   };
 
   const pointsConfig = getPointsConfig(points);
+  const isFav = isFavourite(repoData.id);
+
+  const handleCopy = (url: string) => {
+    void copyToClipboard(url);
+  };
 
   return (
     <div className={styles.profile}>
@@ -94,11 +102,11 @@ const ProfileCardComponent: FC = () => {
       </div>
       <div className={styles.profile_bottom}>
         <div className={styles.profile_utils}>
-          <ButtonWithIcon>
+          <ButtonWithIcon onClick={() => handleCopy(repoData.html_url)}>
             <CopyIcon />
           </ButtonWithIcon>
-          <ButtonWithIcon>
-            <OutlinedHeart />
+          <ButtonWithIcon onClick={() => toggleFavourite(repoData)}>
+            {isFav ? <FilledHeart /> : <OutlinedHeart />}
           </ButtonWithIcon>
         </div>
         <Button type="big" isExternal={true} href={repoData.html_url}>
@@ -107,6 +115,6 @@ const ProfileCardComponent: FC = () => {
       </div>
     </div>
   );
-};
+});
 
 export const ProfileCard = ProfileCardComponent;

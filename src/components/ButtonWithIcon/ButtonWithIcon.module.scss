@@ -16,7 +16,12 @@
     height: 32px;
   }
 
-  :hover {
+  &:hover {
     cursor: pointer;
+  }
+
+  :active {
+    border-radius: 8px;
+    background-color: rgba(var(--color-black-1-rgba), 0.06);
   }
 }
