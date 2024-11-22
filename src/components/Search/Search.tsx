@@ -1,11 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 import styles from '../Search/Search.module.scss';
 import storeRepos from '../../stores/StoreRepos/StoreRepos';
+import { observer } from 'mobx-react-lite';
 
-const SearchComponent: FC = () => {
-  const { getReposAction, resetRepos } = storeRepos;
-  const [searchValue, setSearchValue] = useState('');
-  const [debouncedValue, setDebouncedValue] = useState('');
+const SearchComponent: FC = observer(() => {
+  const { getReposAction, resetRepos, searchValue, setSearchValue } =
+    storeRepos;
+  const [debouncedValue, setDebouncedValue] = useState(searchValue);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -37,6 +38,6 @@ const SearchComponent: FC = () => {
       onChange={handleChange}
     />
   );
-};
+});
 
 export const Search = SearchComponent;

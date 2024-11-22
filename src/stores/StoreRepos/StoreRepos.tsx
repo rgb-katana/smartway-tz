@@ -6,10 +6,16 @@ class StoreRepos {
   repos: IRepository[] = [];
   isError = false;
   isLoading = false;
+  searchValue = '';
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
+
+  setSearchValue = (value: string) => {
+    this.searchValue = value;
+    sessionStorage.setItem('searchValue', value);
+  };
 
   getReposAction = async (searchQuery: string) => {
     this.isLoading = true;
